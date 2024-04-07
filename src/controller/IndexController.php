@@ -1,26 +1,35 @@
 <?php
 
-namespace controller;
+namespace App\controller;
 
-use model\Annonce;
+use App\model\Annonce;
 use model\Photo;
 use model\Annonceur;
 
-class index
+class IndexController
 {
     protected $annonce = array();
 
+    /**
+     * Affiche toutes les annonces avec Twig
+     *
+     * @param \Twig\Environment $twig Instance de Twig
+     * @param array $menu Menu de navigation
+     * @param string $chemin Chemin de base de l'application
+     * @param array $cat Catégories disponibles
+     * @return void
+     */
     public function displayAllAnnonce($twig, $menu, $chemin, $cat)
     {
         $template = $twig->load("index.html.twig");
         $menu     = array(
             array(
                 'href' => $chemin,
-                'text' => 'Acceuil'
+                'text' => 'Accueil'
             ),
         );
 
-        $this->getAll($chemin);
+        $this->getAllAnnonces($chemin);
         echo $template->render(array(
             "breadcrumb" => $menu,
             "chemin"     => $chemin,
@@ -29,7 +38,14 @@ class index
         ));
     }
 
-    public function getAll($chemin)
+    /**
+     * Récupère toutes les annonces depuis la base de données
+     * et les prépare pour l'affichage
+     *
+     * @param string $chemin Chemin de base de l'application
+     * @return void
+     */
+    protected function getAllAnnonces($chemin)
     {
         $tmp     = Annonce::with("Annonceur")->orderBy('id_annonce', 'desc')->take(12)->get();
         $annonce = [];

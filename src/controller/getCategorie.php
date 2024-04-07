@@ -1,9 +1,8 @@
 <?php
-
-namespace controller;
+namespace App\controller;
 
 use model\Categorie;
-use model\Annonce;
+use App\model\Annonce;
 use model\Photo;
 use model\Annonceur;
 
