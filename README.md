@@ -1,3 +1,7 @@
+## exercice
+J'ai suivie les consignes de l'exercice pour Item -> ItemController, addItem -> AddItemController, j'ai aussi changer les liens vers les images qui étaient pas bon. 
+et fait une classe de test pour addItem
+
 ## Racoin
 
 Racoin est une application de vente en ligne entre particulier.
